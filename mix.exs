@@ -1,14 +1,14 @@
-defmodule Proj1.MixProject do
+defmodule RobinGood.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :proj_1,
+      app: :robin_good,
       version: "0.1.0",
       elixir: "~> 1.7",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env() == :prod,
-      escript: [main_module: Proj1.CLI], #Added escript
+      escript: [main_module: RobinGood], #Added escript
       deps: deps()
     ]
   end
@@ -16,7 +16,7 @@ defmodule Proj1.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      [applications: [:logger, :httpoison]]
+      extra_applications: [:logger, :httpoison]
     ]
   end
 
