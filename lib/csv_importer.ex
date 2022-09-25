@@ -1,4 +1,4 @@
-defmodule TodoList.CsvImporter do
+defmodule CsvImporter do
   def import(path) do
     File.stream!(path)
     |> Stream.map(&String.replace(&1, "\n", ""))

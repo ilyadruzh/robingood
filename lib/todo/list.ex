@@ -1,4 +1,4 @@
-defmodule TodoList do
+defmodule Todo.List do
   @moduledoc """
   Documentation for `Todo`.
   """
@@ -6,7 +6,7 @@ defmodule TodoList do
   defstruct auto_id: 1, entries: %{}
 
   def new(entries \\ []) do
-    Enum.reduce(entries, %TodoList{}, fn entry, todo_list_acc ->
+    Enum.reduce(entries, %Todo.List{}, fn entry, todo_list_acc ->
       add_entry(todo_list_acc, entry)
     end)
   end
@@ -15,7 +15,7 @@ defmodule TodoList do
     entry = Map.put(entry, :id, todo_list.auto_id)
     new_entries = Map.put(todo_list.entries, todo_list.auto_id, entry)
 
-    %TodoList{todo_list | entries: new_entries, auto_id: todo_list.auto_id + 1}
+    %Todo.List{todo_list | entries: new_entries, auto_id: todo_list.auto_id + 1}
   end
 
   def entries(todo_list, date) do
@@ -37,12 +37,12 @@ defmodule TodoList do
         old_entry_id = old_entry.id
         new_entry = %{id: ^old_entry_id} = updater_fun.(old_entry)
         new_entries = Map.put(todo_list.entries, new_entry.id, new_entry)
-        %TodoList{todo_list | entries: new_entries}
+        %Todo.List{todo_list | entries: new_entries}
     end
   end
 
   def delete_entry(todo_list, id) do
     new_list = Map.delete(todo_list.entries, id)
-    %TodoList{todo_list | entries: new_list, auto_id: todo_list.auto_id + 1}
+    %Todo.List{todo_list | entries: new_list, auto_id: todo_list.auto_id + 1}
   end
 end
